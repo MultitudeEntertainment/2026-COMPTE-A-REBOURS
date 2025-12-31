@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Compte à rebours 2026</title>
+  <title>Bonne Année !</title>
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -66,12 +66,11 @@
     #fireworks {
       position: fixed;
       inset: 0;
-      display: none;
       z-index: 2;
       pointer-events: none;
     }
 
-    /* Contenu centré */
+    /* Texte centré */
     #content {
       position: relative;
       z-index: 5;
@@ -82,16 +81,8 @@
       padding: 20px;
     }
 
-    #titre {
-      font-size: 3rem;
-      font-weight: 800;
-      letter-spacing: 0.2rem;
-      margin-bottom: 2rem;
-      text-shadow: 0 0 15px gold;
-    }
-
-    #countdown {
-      font-size: 7rem;
+    #bonneannee {
+      font-size: 6rem;
       font-weight: 900;
       text-shadow: 0 0 25px gold, 0 0 55px #ffdd55;
       animation: glow 2s infinite alternate;
@@ -108,17 +99,9 @@
         width: 140px;
         height: 140px;
         font-size: 2rem;
-        top: 4%;
-        right: 5%;
       }
-
-      #titre {
-        font-size: 2rem;
-        margin-bottom: 1.2rem;
-      }
-
-      #countdown {
-        font-size: 4rem;
+      #bonneannee {
+        font-size: 3.5rem;
       }
     }
 
@@ -128,13 +111,8 @@
         height: 110px;
         font-size: 1.6rem;
       }
-
-      #titre {
-        font-size: 1.6rem;
-      }
-
-      #countdown {
-        font-size: 3rem;
+      #bonneannee {
+        font-size: 2.8rem;
       }
     }
   </style>
@@ -149,12 +127,10 @@
   <canvas id="fireworks"></canvas>
 
   <div id="content">
-    <div id="titre">COMPTE À REBOURS VERS 2026</div>
-    <div id="countdown">00:00:00</div>
+    <div id="bonneannee">BONNE ANNÉE !</div>
   </div>
 
   <script>
-    const countdown = document.getElementById("countdown");
     const fireworksCanvas = document.getElementById("fireworks");
     const fireworksCtx = fireworksCanvas.getContext("2d");
     const shootingCanvas = document.getElementById("shooting-stars");
@@ -168,43 +144,6 @@
     }
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
-
-    // --- Compte à rebours ---
-    function updateCountdown() {
-      const now = new Date();
-      const target = new Date("January 1, 2026 00:00:00");
-      const diff = target - now;
-
-      if (diff <= 0) {
-        showHappyNewYear();
-        return;
-      }
-
-      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const m = Math.floor((diff / (1000 * 60)) % 60);
-      const s = Math.floor((diff / 1000) % 60);
-
-      countdown.textContent =
-        `${h.toString().padStart(2,"0")}:` +
-        `${m.toString().padStart(2,"0")}:` +
-        `${s.toString().padStart(2,"0")}`;
-    }
-
-    let switched = false;
-
-    function showHappyNewYear() {
-      if (switched) return;
-      switched = true;
-
-      countdown.textContent = "BONNE ANNÉE 2026 🎉";
-      countdown.style.fontSize = "5rem";
-
-      fireworksCanvas.style.display = "block";
-      startFireworks();
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
 
     // --- Feux d'artifice ---
     function startFireworks() {
@@ -252,6 +191,8 @@
       animateFireworks();
     }
 
+    startFireworks();
+
     // --- Étoiles filantes toutes les 3 secondes ---
     function launchShootingStar() {
       const startX = Math.random() * shootingCanvas.width * 0.3;
@@ -294,7 +235,7 @@
       animateStar();
     }
 
-    setInterval(launchShootingStar, 3000); /* ⭐ toutes les 3 secondes */
+    setInterval(launchShootingStar, 3000);
     setTimeout(launchShootingStar, 1000);
   </script>
 
