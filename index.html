@@ -149,7 +149,7 @@
   <canvas id="fireworks"></canvas>
 
   <div id="content">
-    <div id="titre">COMPTE À REBOURDS VERS 2026</div>
+    <div id="titre">COMPTE À REBOURS VERS 2026</div>
     <div id="countdown">00:00:00</div>
   </div>
 
@@ -252,7 +252,7 @@
       animateFireworks();
     }
 
-    // --- Étoiles filantes ---
+    // --- Étoiles filantes toutes les 3 secondes ---
     function launchShootingStar() {
       const startX = Math.random() * shootingCanvas.width * 0.3;
       const startY = Math.random() * shootingCanvas.height * 0.4;
@@ -294,7 +294,7 @@
       animateStar();
     }
 
-    setInterval(launchShootingStar, 5000);
+    setInterval(launchShootingStar, 3000); /* ⭐ toutes les 3 secondes */
     setTimeout(launchShootingStar, 1000);
   </script>
 
